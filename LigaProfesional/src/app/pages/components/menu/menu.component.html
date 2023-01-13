@@ -1,0 +1,17 @@
+<!-- <div class="container d-flex flex-column justify-content-center">
+    <span *ngFor="let item of list"> {{item}} </span>
+</div> -->
+<mat-drawer-container class="w-100 over-hidden">
+    <mat-drawer #drawer class="example-sidenav" [mode]="'side'" opened fixedTopGap="56">
+      <div class="col h-100">
+            <div class="row ">
+                <button class="ml-1" *ngFor="let item of list" (click)="cargarLiga(item.value)"> {{item.text}} 
+                    <mat-divider class="color-white"></mat-divider>
+                </button>
+            </div>
+        </div>
+    </mat-drawer>
+    <button type="button" mat-button (click)="drawer.toggle()">
+        Toggle sidenav
+      </button>
+  </mat-drawer-container>

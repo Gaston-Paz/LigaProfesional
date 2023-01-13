@@ -1,0 +1,41 @@
+<div class="over w-100 d-flex flex-column justify-content-center">
+    <div class="title w-100 mb-1 d-flex flex-column align-items-center align-self-center">
+        <h4>Fixture {{liga}} </h4>
+    </div>
+
+    <div class="over w-100 d-flex flex-column justify-content-center">
+        <div class="title border mb-1 w-100 d-flex flex-column align-items-center align-self-center">
+            <h4>Fecha 1</h4>
+        </div>
+
+        <div *ngFor="let dia of fecha" class="over w-100 d-flex flex-column justify-content-center">
+            <div class="title border mb-1 w-100 d-flex flex-column align-items-center align-self-center">
+                <h4> {{dia[0].match_date}} </h4>
+            </div>
+
+            <div *ngFor="let partido of dia" class="w-100 d-flex flex-row align-items-center border bg">
+                <div class="col-2 border ">
+                    <span> {{partido.match_time}} </span>
+                </div>
+
+                <div class="col-3 border">
+                    <img class="w-7" [src]="partido.team_home_badge" alt="">
+                    <span> {{partido.match_hometeam_name}} </span>
+                </div>
+
+                <div class="col-1 border d-flex justify-content-center">
+                    <span> {{partido.match_hometeam_score}} </span>
+                </div>
+
+                <div class="col-1 border d-flex justify-content-center">
+                    <span> {{partido.match_awayteam_score}} </span>
+                </div>
+                
+                <div class="col-3 border">
+                    <img class="w-7" [src]="partido.team_away_badge" alt="">
+                    <span> {{partido.match_awayteam_name}} </span>
+                </div>
+            </div>
+
+
+        </div>
