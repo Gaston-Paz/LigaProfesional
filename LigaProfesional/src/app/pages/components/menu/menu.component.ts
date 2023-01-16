@@ -1,7 +1,11 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import {MediaMatcher} from '@angular/cdk/layout';
 import { LigaArgentinaComponent } from '../../liga-argentina/liga-argentina.component';
 import { ApiFootballService } from '../../../services/api-football.service';
+import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+
+const ACTION_LEAGUES: string = "get_leagues";
 
 @Component({
   selector: 'app-menu',
@@ -10,45 +14,12 @@ import { ApiFootballService } from '../../../services/api-football.service';
 })
 export class MenuComponent implements OnInit {
 
-  list:any[]=[
-    {
-      text:'Liga Argentina',
-      value: 44
-    },
-    {
-      text:'La Liga',
-      value: 302
-    },
-    {
-      text:'Premier League',
-      value: 152
-    },
-    {
-      text:'Ligue 1',
-      value: 168
-    },
-    {
-      text:'Bundesliga',
-      value: 175
-    },
-    {
-      text:'Eredivisie',
-      value: 244
-    },
-    {
-      text:'Primeira Liga',
-      value: 266
-    },
-    {
-      text:'Serie A',
-      value: 207
-    },
-  ]
-
-
-
+  list:any[]=[];
+  idNoLigas:string[]=['128','1','2','8','133','166','160'];
   mobileQuery!: MediaQueryList;
   private _mobileQueryListener: () => void;
+
+  @Output() torneo = new EventEmitter<number>();
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
     private _serviceLiga: ApiFootballService) {
@@ -58,11 +29,25 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this._serviceLiga.GetLeagues(ACTION_LEAGUES).subscribe(ligas => {
+      this.list = ligas.filter(f => !f.league_name.includes("Copa") 
+      && !f.league_name.includes("Cup") && !f.league_name.includes("Coppa")
+      && !f.league_name.includes("Coupe") 
+      && !this.idNoLigas.includes(f.country_id)).sort((a,b) => {
+        if (a.country_name > b.country_name) return 1;
+      else if (a.country_name < b.country_name) return -1;
+      else return 0;
+      });
+      
+    },(error:HttpErrorResponse) => {
+      console.log(error);
+      
+    });
   }
 
-  cargarLiga(value:any){
-    console.log("Id Liga: " , value, " falta ver como conectar cn componente liga");
-   
+  cargarLiga(value:number){    
+    this._serviceLiga.league_id = value;
+    this.torneo.emit(value);
   }
 
 }

@@ -14,7 +14,7 @@ button:hover{
     cursor: pointer;
 }
 *{
-    overflow: hidden;
+    overflow: visible;
 }
 
 .ml-1{
@@ -24,5 +24,15 @@ button:hover{
 button{
     text-decoration: none;
     color: #fff;
+    background-color: #222;
+}
+
+.content{
+    display: contents;
+    color: #0F8548;
+    font-size: 60px;
+}
+
+.bg{
     background-color: #222;
 }

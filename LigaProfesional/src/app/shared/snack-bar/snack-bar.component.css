@@ -1,0 +1,19 @@
+.row{
+    display: flex;
+    width: 100%;
+}
+
+.col{
+    flex-direction: column;
+    width: 80%;
+}
+
+.col-2{
+    flex-direction: column;
+    width: 20%;
+}
+
+span{
+    font-size: 14px;
+}
+

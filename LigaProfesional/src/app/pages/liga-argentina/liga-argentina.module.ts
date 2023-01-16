@@ -5,6 +5,7 @@ import { LigaArgentinaRoutingModule } from './liga-argentina-routing.module';
 import { LigaArgentinaComponent } from './liga-argentina.component';
 import { PagesModule } from '../pages.module';
 
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,11 @@ import { PagesModule } from '../pages.module';
   imports: [
     CommonModule,
     LigaArgentinaRoutingModule,
-    PagesModule
+    PagesModule,
+    MatSnackBarModule
+  ],
+  exports: [
+    LigaArgentinaComponent
   ]
 })
 export class LigaArgentinaModule { }

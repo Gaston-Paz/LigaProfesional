@@ -10,6 +10,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatDividerModule} from '@angular/material/divider';
 import { FixtureComponent } from './components/fixture/fixture.component';
+import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,13 +26,16 @@ import { FixtureComponent } from './components/fixture/fixture.component';
     MatTableModule,
     MatSidenavModule,
     MatListModule,
-    MatDividerModule
+    MatDividerModule,
+    MatButtonModule,
+    FormsModule
   ],
   exports:[
     TableComponent,
     TitleComponent,
     MenuComponent,
-    FixtureComponent
+    FixtureComponent,
+    
   ]
 })
 export class PagesModule { }
