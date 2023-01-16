@@ -6,6 +6,7 @@ import { ApiFootballService } from '../../services/api-football.service';
 import { Fixture } from '../../interfaces/fixture.interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarComponent } from 'src/app/shared/snack-bar/snack-bar.component';
+import { Router } from '@angular/router';
 
 const ACTION_POSITIONS: string = "get_standings";
 const ACTION_FIXTURE: string = "get_events";
@@ -28,9 +29,13 @@ export class LigaArgentinaComponent implements OnInit {
 
 
   constructor(private _apiService:ApiFootballService,
-    private _snackBar: MatSnackBar) { }
+    private _snackBar: MatSnackBar,private router:Router) { }
 
   ngOnInit(): void {
+
+    if(this._apiService.league_id === 0){
+      this.router.navigate(['']);
+    }
 
     let obs: Array<Observable<any>> = [];
     obs.push(this._apiService.GetTabla(ACTION_POSITIONS));

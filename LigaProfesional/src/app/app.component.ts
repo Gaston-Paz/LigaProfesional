@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiFootballService } from './services/api-football.service';
 
 @Component({
@@ -11,16 +12,15 @@ export class AppComponent {
   id_League:number = 0;
   liga:boolean = false;
 
-  constructor(private _apiService:ApiFootballService) { }
+  constructor(private _apiService:ApiFootballService, private router:Router) { }
 
   tipoDeTorneo(ev:any){
-    if(this.id_League !== ev){
-      this.id_League = ev;
-      this.liga = false;
+    if(this._apiService.league_id !== parseInt(ev)){
+      this._apiService.league_id = parseInt(ev);
     }
-    setInterval(() => {
-      this.liga = true;
-    },500)
+
+    this.router.navigate(['/pages/redireccion']);
+
   }
 
 }

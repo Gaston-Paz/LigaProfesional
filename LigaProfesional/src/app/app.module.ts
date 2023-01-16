@@ -10,21 +10,27 @@ import { LigaArgentinaModule } from './pages/liga-argentina/liga-argentina.modul
 import { SnackBarComponent } from './shared/snack-bar/snack-bar.component';
 import {MatIconModule} from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MenuComponent } from './shared/menu/menu.component';
+
+
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SnackBarComponent
+    SnackBarComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    PagesModule,
-    LigaArgentinaModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSidenavModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

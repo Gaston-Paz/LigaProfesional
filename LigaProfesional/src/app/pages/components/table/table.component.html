@@ -11,7 +11,7 @@
 
     <ng-container matColumnDef="team">
       <th mat-header-cell *matHeaderCellDef> Equipo </th>
-      <td mat-cell *matCellDef="let element">
+      <td mat-cell *matCellDef="let element" (click)="ViewTeam(element)" class="pointer">
         <img class="w-7" [src]="element.team_badge" alt="Escudo">
         {{element.team_name}}
       </td>

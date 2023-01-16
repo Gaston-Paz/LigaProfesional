@@ -1,6 +1,12 @@
 import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { Team } from '../../../interfaces/teams.interface';
+import { ApiFootballService } from '../../../services/api-football.service';
+
+
+
+
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -14,7 +20,7 @@ export class TableComponent implements OnInit,  AfterViewInit{
   @Input("logo") logo: string = "";
   liga:string="";
 
-  constructor() { 
+  constructor(private _serivceApi:ApiFootballService, private router:Router) { 
   }
 
   ngAfterViewInit(): void {
@@ -30,6 +36,11 @@ export class TableComponent implements OnInit,  AfterViewInit{
     this.liga = this.teams[0].league_name;
   }
 
+  ViewTeam(ev:any){
+    this._serivceApi.league_id = parseInt(ev.league_id);
+    this._serivceApi.team_id = parseInt(ev.team_id);
+    this.router.navigate(['pages/team'])
+  }
   
 
 }

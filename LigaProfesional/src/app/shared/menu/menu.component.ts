@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import {MediaMatcher} from '@angular/cdk/layout';
-import { LigaArgentinaComponent } from '../../liga-argentina/liga-argentina.component';
-import { ApiFootballService } from '../../../services/api-football.service';
+import { LigaArgentinaComponent } from '../../pages/liga-argentina/liga-argentina.component';
+import { ApiFootballService } from '../../services/api-football.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -22,7 +22,7 @@ export class MenuComponent implements OnInit {
   @Output() torneo = new EventEmitter<number>();
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
-    private _serviceLiga: ApiFootballService) {
+    private _serviceLiga: ApiFootballService, private router:Router) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)')
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
